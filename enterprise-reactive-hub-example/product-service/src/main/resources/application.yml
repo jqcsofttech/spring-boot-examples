@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: product-service
+
+  # Configuración de Base de Datos H2
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+
+  sql:
+    init:
+      mode: always   # Ejecuta el schema.sql al arrancar
+
+  data:
+    relational:
+      quoted-identifiers: false
+
+  h2:
+    console:
+      enabled: true
+
+  # Configuración de Kafka (Dentro de 'spring')
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    org.apache.kafka: INFO
